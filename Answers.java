@@ -2,7 +2,7 @@ package CodingBat;
 
 public class Answers {
 
-        //1 countEvens
+        //1 countEvensnewb
         public int countEvens(int[] nums) {
             int count = 0;
             for (int i = 0; i < nums.length; i++) {
