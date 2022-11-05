@@ -97,13 +97,18 @@ public class Answers {
         //9
         public int[] shiftLeft(int[] nums)
         {
-            if(nums.length >= 2)
-            {
-                int temp = nums[0];
-                for(int i = 0; i < nums.length - 1; i++)
-                    nums[i] = nums[i+1];
-                nums[nums.length-1] = temp;
+            // if the arr is consist of 1 element then return that arr
+            if(nums.length==0) return nums;
+            //1st element keeping track at index 0
+            int temp = nums[0];
+
+            for(int i = 0; i < nums.length - 1; i++){
+                //num on the left changed into the number on the right of it ex:6 to 2
+                nums[i] = nums[i+1];
             }
+//after we run through the for loop we add the 1st element back to the arr
+            nums[nums.length-1] = temp;
+
             return nums;
         }
         //10
