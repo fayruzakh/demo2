@@ -2,7 +2,7 @@ package CodingBat;
 
 public class Answers {
 
-        //1 countEvens
+        //1 countEven
         public int countEvens(int[] nums) {
             int count = 0;
             for (int i = 0; i < nums.length; i++) {
@@ -45,26 +45,29 @@ public class Answers {
         //5 no14
         public boolean no14(int[] nums)
         {
-            boolean noOne = true, noFour = true;
-            for(int i = 0; i < nums.length && (noOne || noFour); i++)
+            boolean no1 = false, no4 = false;
+            for(int i = 0; i < nums.length; i++)
             {
                 if(nums[i] == 1)
-                    noOne = false;
-                else if(nums[i] == 4)
-                    noFour = false;
+                    no1 = true;
+                if(nums[i] == 4)
+                    no4 = true;
             }
-            return (noOne || noFour);
+            if(no1&&no4)
+                return false;
+            return true;
         }
         //6
-        public int matchUp(int[] nums1, int[] nums2)
-        {
+        public int matchUp(int[] nums1, int[] nums2) {
+            //initializing
             int count = 0;
-            int diff;
-            for(int i = 0; i < nums1.length; i++)
-            {
-                diff = Math.abs(nums1[i] - nums2[i]);
-                if(diff <= 2 && diff != 0)
-                    count++;
+      //going through the arr
+            for(int i = 0; i < nums1.length; i++){
+                //checking the conditions
+                if( (Math.abs(nums1[i] - nums2[i] ) <= 2) && nums1[i] != nums2[i] ){
+                    count ++;
+
+                }
             }
             return count;
         }
@@ -80,18 +83,13 @@ public class Answers {
             return false;
         }
         //8
-        public boolean sameEnds(int[] nums, int len)
-        {
-            int start = 0;
-            int end = nums.length-len;
-            for(; len > 0; len--)
-            {
-                if(nums[start] != nums[end])
+        public boolean sameEnds(int[] nums, int len){
+// look at the n # instead of  running it through the whole loop
+//set distance between the 1st one and the last one (move up by one bc i++)
+            for(int i=0; i<len; i++){
+                //check the last and 1st besed on the length of the n and arr
+                if(nums[i]!=nums[nums.length-len+i]){
                     return false;
-                else
-                {
-                    start++;
-                    end++;
                 }
             }
             return true;
@@ -99,45 +97,63 @@ public class Answers {
         //9
         public int[] shiftLeft(int[] nums)
         {
-            if(nums.length >= 2)
-            {
-                int temp = nums[0];
-                for(int i = 0; i < nums.length - 1; i++)
-                    nums[i] = nums[i+1];
-                nums[nums.length-1] = temp;
+            // if the arr is consist of 1 element then return that arr
+            if(nums.length==0) return nums;
+            //1st element keeping track at index 0
+            int temp = nums[0];
+
+            for(int i = 0; i < nums.length - 1; i++){
+                //num on the left changed into the number on the right of it ex:6 to 2
+                nums[i] = nums[i+1];
             }
+//after we run through the for loop we add the 1st element back to the arr
+            nums[nums.length-1] = temp;
+
             return nums;
         }
         //10
-        public int[] post4(int[] nums)
-        {
-            int p = nums.length - 1;
-            int[] arr;
-            while(nums[p] != 4)
-                p--;
-            arr = new int[nums.length - 1 - p];
-            for(int i = p + 1; i < nums.length; i++)
-                arr[i - p - 1] = nums[i];
-            return arr;
+        public int[] post4(int[] nums){
+//to keep track of where the last 4 is
+            int index=0;
+            for (int i=0; i<nums.length; i++) {
+                //if the # @ i is equal to 4
+                if (nums[i] == 4){
+                    //change the index so that its equal to the index of that 4
+                    //add 1 bc we want the arr to include the # after 4
+                    index=i+1; }
+            }
+            // 4 at index 1
+            //int index at 2 bc of +i
+            //length = 4
+            //therefore 4-2=2
+            //setting the size
+            int[]result=new int[nums.length-index];
+            for(int i=0;i<nums.length-index; i++){
+                // adds the last numbers into the resulting arr
+                //+ index starts 1st # after 4
+                result[i]=nums[i+index];
+            }
+            return result;
         }
         //11
-        public int[] withoutTen(int[] nums)
-        {
-            int[] arr = new int[nums.length];
-            int p = 0;
-            for(int i = 0; i < nums.length; i++)
-            {
-                if(nums[i] != 10)
-                {
-                    arr[p] = nums[i];
-                    p++;
+        public int[] withoutTen(int[] nums) {
+            //check for none10 values there are
+            //put elements that are not 10 into the top of the
+            int  index =0;
+            for(int i=0; i< nums.length; i++) {
+                //takes the non10 vales and puts them to le left side of the array
+                if( nums[i]!=10) {
+                    nums[index] = nums[i];
+                    index++;
                 }
             }
-
-            return arr;
+            for(int i=index; i<nums.length; i++) {
+                nums[i]=0;
+            }
+            return nums;
         }
 
-        //12
+    //12
         public String[] fizzBuzz(int start, int end) {
             int n = end - start;
             String[] result = new String[n];
