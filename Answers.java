@@ -2,7 +2,7 @@ package CodingBat;
 
 public class Answers {
 
-        //1 countEvensnewb
+        //1 countEven
         public int countEvens(int[] nums) {
             int count = 0;
             for (int i = 0; i < nums.length; i++) {
@@ -45,26 +45,29 @@ public class Answers {
         //5 no14
         public boolean no14(int[] nums)
         {
-            boolean noOne = true, noFour = true;
-            for(int i = 0; i < nums.length && (noOne || noFour); i++)
+            boolean no1 = false, no4 = false;
+            for(int i = 0; i < nums.length; i++)
             {
                 if(nums[i] == 1)
-                    noOne = false;
-                else if(nums[i] == 4)
-                    noFour = false;
+                    no1 = true;
+                if(nums[i] == 4)
+                    no4 = true;
             }
-            return (noOne || noFour);
+            if(no1&&no4)
+                return false;
+            return true;
         }
         //6
-        public int matchUp(int[] nums1, int[] nums2)
-        {
+        public int matchUp(int[] nums1, int[] nums2) {
+            //initializing
             int count = 0;
-            int diff;
-            for(int i = 0; i < nums1.length; i++)
-            {
-                diff = Math.abs(nums1[i] - nums2[i]);
-                if(diff <= 2 && diff != 0)
-                    count++;
+      //going through the arr
+            for(int i = 0; i < nums1.length; i++){
+                //checking the conditions
+                if( (Math.abs(nums1[i] - nums2[i] ) <= 2) && nums1[i] != nums2[i] ){
+                    count ++;
+
+                }
             }
             return count;
         }
