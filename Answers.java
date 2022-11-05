@@ -83,18 +83,13 @@ public class Answers {
             return false;
         }
         //8
-        public boolean sameEnds(int[] nums, int len)
-        {
-            int start = 0;
-            int end = nums.length-len;
-            for(; len > 0; len--)
-            {
-                if(nums[start] != nums[end])
+        public boolean sameEnds(int[] nums, int len){
+// look at the n # instead of  running it through the whole loop
+//set distance between the 1st one and the last one (move up by one bc i++)
+            for(int i=0; i<len; i++){
+                //check the last and 1st besed on the length of the n and arr
+                if(nums[i]!=nums[nums.length-len+i]){
                     return false;
-                else
-                {
-                    start++;
-                    end++;
                 }
             }
             return true;
