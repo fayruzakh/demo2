@@ -136,23 +136,24 @@ public class Answers {
             return result;
         }
         //11
-        public int[] withoutTen(int[] nums)
-        {
-            int[] arr = new int[nums.length];
-            int p = 0;
-            for(int i = 0; i < nums.length; i++)
-            {
-                if(nums[i] != 10)
-                {
-                    arr[p] = nums[i];
-                    p++;
+        public int[] withoutTen(int[] nums) {
+            //check for none10 values there are
+            //put elements that are not 10 into the top of the
+            int  index =0;
+            for(int i=0; i< nums.length; i++) {
+                //takes the non10 vales and puts them to le left side of the array
+                if( nums[i]!=10) {
+                    nums[index] = nums[i];
+                    index++;
                 }
             }
-
-            return arr;
+            for(int i=index; i<nums.length; i++) {
+                nums[i]=0;
+            }
+            return nums;
         }
 
-        //12
+    //12
         public String[] fizzBuzz(int start, int end) {
             int n = end - start;
             String[] result = new String[n];
