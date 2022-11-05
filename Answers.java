@@ -112,16 +112,28 @@ public class Answers {
             return nums;
         }
         //10
-        public int[] post4(int[] nums)
-        {
-            int p = nums.length - 1;
-            int[] arr;
-            while(nums[p] != 4)
-                p--;
-            arr = new int[nums.length - 1 - p];
-            for(int i = p + 1; i < nums.length; i++)
-                arr[i - p - 1] = nums[i];
-            return arr;
+        public int[] post4(int[] nums){
+//to keep track of where the last 4 is
+            int index=0;
+            for (int i=0; i<nums.length; i++) {
+                //if the # @ i is equal to 4
+                if (nums[i] == 4){
+                    //change the index so that its equal to the index of that 4
+                    //add 1 bc we want the arr to include the # after 4
+                    index=i+1; }
+            }
+            // 4 at index 1
+            //int index at 2 bc of +i
+            //length = 4
+            //therefore 4-2=2
+            //setting the size
+            int[]result=new int[nums.length-index];
+            for(int i=0;i<nums.length-index; i++){
+                // adds the last numbers into the resulting arr
+                //+ index starts 1st # after 4
+                result[i]=nums[i+index];
+            }
+            return result;
         }
         //11
         public int[] withoutTen(int[] nums)
