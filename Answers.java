@@ -154,21 +154,23 @@ public class Answers {
         }
 
     //12
-        public String[] fizzBuzz(int start, int end) {
-            int n = end - start;
-            String[] result = new String[n];
-            int pos = 0;
-            for (int i = start; i < end; i++) {
-                boolean fizz = i % 3 == 0;
-                boolean buzz = i % 5 == 0;
-                if (fizz && buzz) result[pos] = "FizzBuzz";
-                else if (fizz) result[pos] = "Fizz";
-                else if (buzz) result[pos] = "Buzz";
-                else result[pos] = String.valueOf(i);
-                pos++;
+    public String[] fizzBuzz(int start, int end) {
+
+        String[] result = new String[end - start];
+        for(int i=0; i< result.length; i++ ){
+            int temp=i+start;
+            if(temp%3 == 0 && temp%5 == 0){
+                result[i] = "FizzBuzz";
+            }else if (temp% 3==0){
+                result[i]="Fizz";
+            }else if (temp % 5 ==0){
+                result[i]="Buzz";
+            }else{
+                result[i]=String.valueOf(temp);
             }
-            return result;
         }
+        return result;
+    }
 
 
     }
